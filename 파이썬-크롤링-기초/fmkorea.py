@@ -9,7 +9,7 @@ lastPageNum = int(lastPage) + 1
 index: int = 1
 
 for page in range(1, lastPageNum, 1):
-    response = requests.get("https://www.fmkorea.com/index.php?mid=humor&search_keyword=%E3%85%87%E3%85%8E&search_target=title_content&page=1")
+    response = requests.get(f"https://www.fmkorea.com/index.php?mid=humor&search_keyword={keyword}&search_target=title_content&page={page}")
 
     if response.status_code == 200:
         html = response.text
@@ -19,7 +19,7 @@ for page in range(1, lastPageNum, 1):
         for link in links:
             title = link.text
             url = link.attrs['href']
-            print(page, index, title, url)
+            print(page, index, title, 'https://www.fmkorea.com/'+url)
             # print(link)
             index += 1
     else:
